@@ -3,7 +3,7 @@ name: build and deploy
 on:
   push:
     branches: [ main ]
-    paths: .github/workflows/azure-kubernetes-service.yaml
+    paths: .github/workflows/main.yml
   pull_request:
     branches:  none # [ main ]
   # Allows you to run this workflow manually from the Actions tab
