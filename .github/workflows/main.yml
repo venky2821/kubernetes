@@ -51,7 +51,7 @@ jobs:
         manifests: |
                myapp/dep.yaml
     
-    - name: Run Kube-Bench to check cluster config
+    - name: Run cluster-info to check cluster config
       continue-on-error: true
       run: |
         kubectl apply -f https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-aks.yaml
