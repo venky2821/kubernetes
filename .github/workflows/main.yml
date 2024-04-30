@@ -40,8 +40,4 @@ jobs:
       uses: azure/k8s-deploy@v1
       with:
         kubeconfig: ${{ secrets.KUBE_CONFIG }
-        images: |
-          $DOCKER_REPOSITORY/$IMAGE_NAME:${IMAGE_TAG}
-        imagepullsecrets: | 
-          my-image-pull-secret
         args: kubectl get pods
