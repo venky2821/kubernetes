@@ -1,4 +1,4 @@
-name: build and deploy
+name: build-and-deploy
 
 on:
   push:
@@ -8,39 +8,40 @@ on:
     branches:  none # [ main ]
   workflow_dispatch:
 
+
 jobs:
 
   build-deploy-aks:
     runs-on: ubuntu-latest
     env:
-      DOCKER_REPOSITORY: venky2821 # name of Docker Hub ID
+      DOCKER_REPOSITORY: venky2821 # Docker Hub ID
       IMAGE_NAME: kubernetesimage
-      IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
-      
+      IMAGE_TAG: ${{ github.run_number }}
       CLUSTER_NAME: kubernetes-admin@kubernetes
-      RESOURSE_GROUP: venkatesh-rg
-    
+      RESOURCE_GROUP: venkatesh-rg 
     steps:
 
-    - name: Git Checkout
+    - name: Checkout Repository
       uses: actions/checkout@v2
   
     - name: Build Docker Image
-      run:
-        docker build myapp -t $DOCKER_REPOSITORY/$IMAGE_NAME:$GITHUB_RUN_NUMBER
+      run: |
+        docker build -t $DOCKER_REPOSITORY/$IMAGE_NAME:${IMAGE_TAG} myapp
 
     - name: Login to Docker Hub
       run: |
         echo "${{ secrets.DOCKER_PASSWORD_VENKY }}" | docker login -u $DOCKER_REPOSITORY --password-stdin
   
     - name: Push Image to Docker Hub
-      run:
-        docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$GITHUB_RUN_NUMBER
-           
-    - name: kubernetes Deploy
-      env:
-        KUBECONFIG: ${{ secrets.KUBE_CONFIG }}
       run: |
-        env
-        kubectl get nodes
-
+        docker push $DOCKER_REPOSITORY/$IMAGE_NAME:${IMAGE_TAG}
+           
+    - name: Deploy to Kubernetes
+      uses: azure/k8s-deploy@v1
+      with:
+        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+        namespace: default
+        images: |
+          $DOCKER_REPOSITORY/$IMAGE_NAME:${IMAGE_TAG}
+        imagepullsecrets: | 
+          my-image-pull-secret
