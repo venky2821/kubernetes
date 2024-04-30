@@ -44,3 +44,4 @@ jobs:
           $DOCKER_REPOSITORY/$IMAGE_NAME:${IMAGE_TAG}
         imagepullsecrets: | 
           my-image-pull-secret
+        args: kubectl get pods
