@@ -39,7 +39,7 @@ jobs:
            
     - name: kubernetes Deploy
       env:
-        KUBECONFIG=${{ secrets.KUBE_CONFIG }}
+        KUBECONFIG: ${{ secrets.KUBE_CONFIG }}
       run: |
         env
         kubectl get nodes
