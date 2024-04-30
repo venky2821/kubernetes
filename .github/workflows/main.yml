@@ -38,5 +38,5 @@ jobs:
     - uses: actions-hub/kubectl@master
       env:
          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-         with:
+         with: |
          args: get pods
