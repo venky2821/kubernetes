@@ -38,7 +38,10 @@ jobs:
       run: |
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
-          kubectl get pods
-           - name: Setup kubectl
-      id: install-kubectl
-    uses: azure/setup-kubectl@v3
+    - name: Deploy Service
+      run: |
+        kubectl apply -f myapp/dep.yaml
+
+    - name: Get Pods
+      run: |
+        kubectl get pods
