@@ -39,4 +39,6 @@ jobs:
       env:
          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
          with: |
+         manifests: 
+                dep.yaml
          args: get pods
