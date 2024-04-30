@@ -38,4 +38,3 @@ jobs:
       run: |
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
-          kubectl config current-context
