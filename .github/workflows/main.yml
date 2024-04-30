@@ -35,8 +35,8 @@ jobs:
       run:
         docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$GITHUB_RUN_NUMBER
            
-     - uses: actions-hub/kubectl@master
-       env:
+    - uses: actions-hub/kubectl@master
+      env:
          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-       with:
+         with:
          args: get nodes
