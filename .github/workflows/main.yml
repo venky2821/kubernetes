@@ -38,10 +38,4 @@ jobs:
       run: |
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
-    - name: Deploy Service
-      run: |
-        kubectl apply -f myapp/dep.yaml
-
-    - name: Get Pods
-      run: |
-        kubectl get pods
+          kubectl get pods
