@@ -1,42 +1,58 @@
-name: build and deploy
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: venky-ns
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: 
+        ports:
+        - containerPort: 80
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 6378
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-svc
+  namespace: venky-ns
+  labels:
+    app: nginx
+spec:
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: nginx
+  type: NodePort
 
-on:
-  push:
-    branches: [main]
-    paths: .github/workflows/main.yml
-  pull_request:
-    branches: none
-  workflow_dispatch:
-
-jobs:
-  build-deploy-aks:
-    runs-on: ubuntu-latest
-    env:
-      DOCKER_REPOSITORY: venky2821 # name of Docker Hub ID
-      IMAGE_NAME: kubernetesimage
-      IMAGE_TAG: ${{ github.run_number }} # $GITHUB_RUN_NUMBER
-      CLUSTER_NAME: kubernetes-admin@kubernetes
-      RESOURSE_GROUP: venkatesh-rg
-
-    steps:
-    - name: Git Checkout
-      uses: actions/checkout@v2
-  
-    - name: Build Docker Image
-      run: |
-        docker build myapp -t $DOCKER_REPOSITORY/$IMAGE_NAME:$GITHUB_RUN_NUMBER
-
-    - name: Login to Docker Hub
-      run: |
-        echo "${{ secrets.DOCKER_PASSWORD_VENKY }}" | docker login -u $DOCKER_REPOSITORY --password-stdin
-  
-    - name: Push Image to Docker Hub
-      run: |
-        docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$GITHUB_RUN_NUMBER
-           
-    - name: Deploy to Kubernetes
-      uses: azure/k8s-deploy@v1
-      with:
-        manifests: |
-          myapp/dep.yaml
-        kubeconfig: ${{ secrets.KUBE_CONFIG }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx
+  namespace: venky-ns
+  annotations:
+    metallb.universe.tf/address-pool: first-pool
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: nginx
+  type: LoadBalancer
