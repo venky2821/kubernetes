@@ -16,14 +16,15 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: venky2821/kubernetesimage:latest
-        ports:
-        - containerPort: 80
-      - name: redis
-        image: redis
-        ports:
-        - containerPort: 6378
+        - name: nginx
+          image: venky2821/kubernetesimage:latest
+          ports:
+            - containerPort: 80
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6378
+
 ---
 kind: Service
 apiVersion: v1
@@ -40,6 +41,7 @@ spec:
   selector:
     app: nginx
   type: NodePort
+
 ---
 kind: Service
 apiVersion: v1
@@ -50,8 +52,9 @@ metadata:
     metallb.universe.tf/address-pool: first-pool
 spec:
   ports:
-  - port: 80
-    targetPort: 80
+    - port: 80
+      targetPort: 80
   selector:
     app: nginx
   type: LoadBalancer
+
