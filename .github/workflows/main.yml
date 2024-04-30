@@ -39,8 +39,7 @@ jobs:
     - name: Deploy to Kubernetes
       uses: azure/k8s-deploy@v1
       with:
-        kubeconfig: ${{ secrets.KUBE_CONFIG }}
-        namespace: default
+        kubeconfig: ${{ secrets.KUBE_CONFIG }
         images: |
           $DOCKER_REPOSITORY/$IMAGE_NAME:${IMAGE_TAG}
         imagepullsecrets: | 
