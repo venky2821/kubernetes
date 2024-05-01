@@ -34,7 +34,7 @@ jobs:
       run: |
         docker push $DOCKER_REPOSITORY/$IMAGE_NAME:$GITHUB_RUN_NUMBER
            
-    - name: Configure kubectl
+    - name: kubernetes deploy and pods
       run: |
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
