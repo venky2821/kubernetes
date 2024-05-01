@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-deploy-aks:
+  build-deploy-kubernetes-image:
     runs-on: ubuntu-latest
     env:
       DOCKER_REPOSITORY: venky2821 # name of Docker Hub ID
