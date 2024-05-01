@@ -38,14 +38,7 @@ jobs:
       run: |
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
-    - name: cluster info
-      run : |
-        kubectl cluster-info
-    - name: Deploy apply
-      run: |
-        kubectl apply -f myapp/dep.yaml --validate=false
-
-    - name: Get Pods
-      run: |
-        kubectl get pods
+          kubectl cluster-info
+          kubectl apply -f myapp/dep.yaml 
+          kubectl get pods
 
