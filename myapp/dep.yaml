@@ -24,7 +24,6 @@ spec:
           image: redis
           ports:
             - containerPort: 6378
-
 ---
 kind: Service
 apiVersion: v1
@@ -41,20 +40,4 @@ spec:
   selector:
     app: nginx
   type: NodePort
-
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: nginx
-  namespace: venky-ns
-  annotations:
-    metallb.universe.tf/address-pool: first-pool
-spec:
-  ports:
-    - port: 80
-      targetPort: 80
-  selector:
-    app: nginx
-  type: LoadBalancer
 
