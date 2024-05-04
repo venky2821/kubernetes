@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  namespace: chinnu-ns
+  #namespace: chinnu-ns
   labels:
     app: nginx
 spec:
@@ -29,7 +29,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nginx-svc
-  namespace: chinnu-ns
+  #namespace: chinnu-ns
   labels:
     app: nginx
 spec:
@@ -45,7 +45,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nginx
-  namespace: chinnu-ns
+  #namespace: chinnu-ns
   annotations:
     metallb.universe.tf/address-pool: first-pool
 spec:
