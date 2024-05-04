@@ -40,20 +40,4 @@ spec:
   selector:
     app: nginx
   type: NodePort
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: nginx
-  #namespace: chinnu-ns
-  annotations:
-    metallb.universe.tf/address-pool: first-pool
-spec:
-  ports:
-  - port: 80
-    targetPort: 80
-  selector:
-    app: nginx
-  type: LoadBalancer
-
 
