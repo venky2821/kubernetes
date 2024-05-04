@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: venky2821/kubernetesimage:latest
+          image: venky2821/kubernetesimage:tagname
           ports:
             - containerPort: 80
         - name: redis
