@@ -19,7 +19,7 @@ spec:
           image: venky2821/kubernetesimage:latest
           ports:
             - containerPort: 80
-          imagePullPolicy: IfNotPresent  
+          imagePullPolicy: Always  
         - name: redis
           image: redis
           ports:
