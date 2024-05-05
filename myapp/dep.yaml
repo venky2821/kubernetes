@@ -1,29 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
-  #namespace: chinnu-ns
-  labels:
-    app: nginx
+  name: nginx
 spec:
+  replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      run: nginx
   template:
     metadata:
       labels:
-        app: nginx
+        run: nginx
     spec:
       containers:
-        - name: nginx
-          image: venky2821/kubernetesimage:latest
-          ports:
-            - containerPort: 80
-          imagePullPolicy: Always  
-        - name: redis
-          image: redis
-          ports:
-            - containerPort: 6378
+      - name: nginx
+        image: venky2821/kubernetesimage:latest
+        ports:
+          - containerPort: 80
+        imagePullPolicy: IfNotPresent
 ---
 kind: Service
 apiVersion: v1
