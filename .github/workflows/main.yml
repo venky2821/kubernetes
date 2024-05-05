@@ -69,7 +69,7 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
           kubectl cluster-info 
-          kubectl create namespace eswar-ns
+          #kubectl create namespace eswar-ns
           kubectl apply -f myapp-dep/dep.yaml 
           kubectl get pods -n eswar-ns
           kubectl delete pod --field-selector=status.phase!=Running
