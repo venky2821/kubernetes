@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: venky2821/kubernetesimage:tagname
+        image: venky2821/kubernetesimage:latest
         ports:
           - containerPort: 80
         imagePullPolicy: Always
