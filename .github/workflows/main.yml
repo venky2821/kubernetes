@@ -37,7 +37,6 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
           kubectl cluster-info
-          kubectl create namespace chinnu-ns
           kubectl apply -f myapp/dep.yaml 
           kubectl get pods
           kubectl delete pod --field-selector=status.phase!=Running
