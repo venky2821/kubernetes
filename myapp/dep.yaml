@@ -20,13 +20,13 @@ spec:
           image: venky2821/kubernetesimage:latest
           ports:
             - containerPort: 80
-          env:
-            - name: TAG_NAME
-              value: "latest"
-        - name: redis
-          image: redis
-          ports:
-            - containerPort: 6378
+        #   env:
+        #     - name: TAG_NAME
+        #       value: "latest"
+        # - name: redis
+        #   image: redis
+        #   ports:
+        #     - containerPort: 6378
 ---
 kind: Service
 apiVersion: v1
