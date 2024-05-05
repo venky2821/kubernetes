@@ -17,9 +17,12 @@ spec:
     spec:
       containers:
         - name: nginx
-          image: venky2821/kubernetesimage:${{ github.run_number }}
+          image: venky2821/kubernetesimage:${TAG_NAME}
           ports:
             - containerPort: 80
+          env:
+            - name: TAG_NAME
+              value: "latest"
         - name: redis
           image: redis
           ports:
