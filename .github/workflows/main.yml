@@ -40,7 +40,7 @@ jobs:
           export KUBECONFIG=kubeconfig
           kubectl cluster-info 
           kubectl get deploy -n chinnu-ns
-          # kubectl delete deploy nginx -n chinnu-ns
+          kubectl delete deploy nginx-deployment -n chinnu-ns
           kubectl apply -f myapp/dep.yaml 
           kubectl get pods -n chinnu-ns
           kubectl get deploy nginx -o yaml -n chinnu-ns
