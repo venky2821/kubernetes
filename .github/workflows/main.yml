@@ -40,9 +40,13 @@ jobs:
           export KUBECONFIG=kubeconfig
           kubectl cluster-info 
           kubectl get pods
+          kubectl delete deploy nginx-deployment
+          kubectl delete deploy nginx
+          kubectl get pods
           kubectl apply -f myapp/dep.yaml 
           kubectl get deploy nginx-deployment -o yaml
           kubectl get pods
+          kubectl logs -f deployment/nginx-deployment
           kubectl delete pod --field-selector=status.phase!=Running
           kubectl get pods
 
