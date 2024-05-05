@@ -39,7 +39,7 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
           kubectl cluster-info 
-          kubectl get deploy
+          kubectl get deploy -n chinnu-ns
           kubectl apply -f myapp/dep.yaml 
           kubectl get pods -A
           kubectl get deploy nginx -o yaml
