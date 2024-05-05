@@ -30,7 +30,7 @@ jobs:
   
     - name: Push Image to Docker Hub
       run: |
-        docker push $DOCKER_REPOSITORY/$IMAGE_NAME:${{ github.run_number }}
+        docker push $DOCKER_REPOSITORY/$IMAGE_NAME:${{ github.run_number }} $DOCKER_REPOSITORY/$IMAGE_NAME:latest
            
     - name: kubernetes deploy and pods
       run: |
