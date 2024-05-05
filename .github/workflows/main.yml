@@ -48,6 +48,7 @@ jobs:
           kubectl logs -f deployment/nginx -n chinnu-ns
           kubectl get pods -n chinnu-ns
           kubectl describe pod nginx-69dc8b665d-dn28q -n chinnu-ns
+          kubectl logs nginx-69dc8b665d-dn28q -n chinnu-ns
           sleep 5
           kubectl get pods -n chinnu-ns
           kubectl delete pod --field-selector=status.phase!=Running
