@@ -39,10 +39,9 @@ jobs:
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
           kubectl cluster-info 
-          kubectl get pods
           kubectl apply -f myapp/dep.yaml 
           kubectl get pods
-          kubectl get deploy nginx-deployment -o yaml
+          kubectl get deploy nginx -o yaml
           kubectl get pods
           kubectl logs -f deployment/nginx
           kubectl delete pod --field-selector=status.phase!=Running
