@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx
-  namespace: chinnu-ns-dep
+  namespace: eswar-ns
   labels:
     app: nginx
 spec:
@@ -29,7 +29,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: nginx-svc
-  namespace: chinnu-ns-dep
+  namespace: eswar-ns
   labels:
     app: nginx
 spec:
