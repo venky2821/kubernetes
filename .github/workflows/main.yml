@@ -64,7 +64,7 @@ jobs:
       run: |
         docker push $DOCKER_REPOSITORY/$IMAGE_NAME:latest
            
-    - name: kubernetes deploy and pods
+    - name: kubernetes Configure and Deploy Pods
       run: |
           echo "${{ secrets.KUBE_CONFIG }}" > kubeconfig
           export KUBECONFIG=kubeconfig
