@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-deploy-kubernetes-image:
+  Statging:
     runs-on: ubuntu-latest
     env:
       DOCKER_REPOSITORY: venky2821 # name of Docker Hub ID
@@ -42,7 +42,7 @@ jobs:
           kubectl delete pod --field-selector=status.phase!=Running
           kubectl get pods -n chinnu-ns
 
-  build-deploy-kubernetes-image-Production:
+  Production:
     runs-on: ubuntu-latest
     env:
       DOCKER_REPOSITORY: venky2821 # name of Docker Hub ID
